@@ -7,7 +7,6 @@ AR = 0.1;                   //Corresponde a razão de aspecto da Darreius (H/Dd)
 // RR  = 0.4;                  //Razão entre os raios da Savonius e da darreius (r_d/c_s)
 // gama = 10*(Pi/180);         //"Fase" entre os rotores
 
-//Darreius 
 r_d = 0.4;                  //Raio da Turbina Darreius (m)
 c_d = 0.2;                  //Corda da Pá da Darreius (m)
 n_d = 3;                    //Número de Pás
