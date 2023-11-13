@@ -4,71 +4,17 @@ SetFactory("OpenCASCADE");
 //Parâmetros de Projeto
 AR = 0.1;                   //Corresponde a razão de aspecto da Darreius (H/Dd)
 OR = 0.1;                   //Corresponde a sobreposição das pás da turbina savonius (s/c_s)
-// RR  = 0.4;                  //Razão entre os raios da Savonius e da darreius (r_d/c_s)
 gama = 00*(Pi/180);         //"Fase" entre os rotores
 
-//Darreius 
-// r_d = 0.4;                  //Raio da Turbina Darreius (m)
-// c_d = 0.2;                  //Corda da Pá da Darreius (m)
-// n_d = 3;                    //Número de Pás
-// D_d = r_d*2;                //Diâmetro da Turbina Darreius (m)
-// SR  = (n_d*c_d)/(2*r_d);    //Corresponde a razão de solidez 
 
 //Savonius
 c_s = 0.972;                 //Raio da Turbina Savonius (m)            
 esp = 0.0072;                //Espessura da pá (m)
-s = 0.144;                 //Sobreposição da Pás (m)
-D_s = 2*c_s - s;            //Diâmetro da Savonius
-H   = D_s*AR;               //Altura dos rotores
-fi  = 0*(Pi/180);           //Ângulo de retorno da pá da savonius
+s = 0.144;                   //Sobreposição da Pás (m)
+D_s = 2*c_s - s;             //Diâmetro da Savonius
+H   = D_s*AR;                //Altura dos rotores
+fi  = 0*(Pi/180);            //Ângulo de retorno da pá da savonius
 ea = 0.0243;                 //Espessura da Alma da Malha
-
-// Point( 1) = ( 0.100000,       0.000378,       0.000000 );
-// Point( 2) = ( 0.090000,       0.002420,       0.000000 );
-// Point( 3) = ( 0.080000,       0.004344,       0.000000 );
-// Point( 4) = ( 0.060000,       0.007870,       0.000000 );
-// Point( 5) = ( 0.040000,       0.010992,       0.000000 );
-// Point( 6) = ( 0.020000,       0.013690,       0.000000 );
-// Point( 7) = ( 0.000000,       0.015882,       0.000000 );
-// Point( 8) = ( -0.02000,       0.017410,       0.000000 );
-// Point( 9) = ( -0.04000,       0.018006,       0.000000 );
-// Point(10) = ( -0.05000,       0.017824,       0.000000 );
-// Point(11) = ( -0.06000,       0.017212,       0.000000 );
-// Point(12) = ( -0.07000,       0.016036,       0.000000 );
-// Point(13) = ( -0.08000,       0.014048,       0.000000 );
-// Point(14) = ( -0.08500,       0.012600,       0.000000 );
-// Point(15) = ( -0.09000,       0.010664,       0.000000 );
-// Point(16) = ( -0.09500,       0.007844,       0.000000 );
-// Point(17) = ( -0.09750,       0.005682,       0.000000 );
-// Point(18) = ( -0.10000,       0.000000,       0.000000 );
-// Point(19) = ( -0.09750,       -0.00568,       0.000000 );
-// Point(20) = ( -0.09500,       -0.00784,       0.000000 );
-// Point(21) = ( -0.09000,       -0.01066,       0.000000 );
-// Point(22) = ( -0.08500,       -0.01260,       0.000000 );
-// Point(23) = ( -0.08000,       -0.01404,       0.000000 );
-// Point(24) = ( -0.07000,       -0.01603,       0.000000 );
-// Point(25) = ( -0.06000,       -0.01721,       0.000000 );
-// Point(26) = ( -0.05000,       -0.01782,       0.000000 );
-// Point(27) = ( -0.04000,       -0.01800,       0.000000 );
-// Point(28) = ( -0.02000,       -0.01741,       0.000000 );
-// Point(29) = ( 0.000000,       -0.01588,       0.000000 );
-// Point(30) = ( 0.020000,       -0.01369,       0.000000 );
-// Point(31) = ( 0.040000,       -0.01099,       0.000000 );
-// Point(32) = ( 0.060000,       -0.00787,       0.000000 );
-// Point(33) = ( 0.080000,       -0.00434,       0.000000 );
-// Point(34) = ( 0.090000,       -0.00242,       0.000000 );
-
-
-// Translate {0, r_d, 0}{Point{1}; Point{2}; Point{3}; Point{4}; Point{5}; Point{6}; Point{7}; Point{8}; Point{9}; Point{10}; Point{11}; Point{12}; Point{13}; Point{14}; Point{15}; Point{16}; Point{17}; Point{18}; Point{19}; Point{20}; Point{21}; Point{22}; Point{23}; Point{24}; Point{25}; Point{26}; Point{27}; Point{28}; Point{29}; Point{30}; Point{31}; Point{32}; Point{33}; Point{34};}
-
-// Coherence;
-// BSpline(1) = {18, 17, 16, 15, 14, 13, 12, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1, 1, 34, 33, 32, 31, 30, 29, 28, 27, 26, 25, 24, 23, 22, 21, 20, 19, 18};
-// Line Loop(2) = {1};
-// Plane Surface(3) = {2};
-
-// Rotate {{0, 0, 1}, {0, 0, 0}, 2*Pi/3} {Duplicata { Surface{3}; }}
-// Rotate {{0, 0, 1}, {0, 0, 0}, 4*Pi/3} {Duplicata { Surface{3}; }}
-// Delete {Surface{3, 4, 5};}
 
 //Criando zona de rotação
 Point(100) = { 0         ,  0           , 0, 1.0};        //Centro

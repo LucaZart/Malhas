@@ -3,23 +3,11 @@ SetFactory("OpenCASCADE");
 
 //Parâmetros de Projeto
 AR = 0.1;                   //Corresponde a razão de aspecto da Darreius (H/Dd)
-// OR = 0.1;                   //Corresponde a sobreposição das pás da turbina savonius (s/c_s)
-// RR  = 0.4;                  //Razão entre os raios da Savonius e da darreius (r_d/c_s)
-// gama = 10*(Pi/180);         //"Fase" entre os rotores
-
 r_d = 0.4;                  //Raio da Turbina Darreius (m)
 c_d = 0.2;                  //Corda da Pá da Darreius (m)
 n_d = 3;                    //Número de Pás
 D_d = r_d*2;                //Diâmetro da Turbina Darreius (m)
 SR  = (n_d*c_d)/(2*r_d);    //Corresponde a razão de solidez 
-
-// //Savonius
-// c_s = r_d*RR;               //Raio da Turbina Savonius (m)             
-// esp = 0.001;                //Espessura da pá (m)
-// s = c_s*OR;                 //Sobreposição da Pás (m)
-// H   = D_d*AR;               //Altura dos rotores
-// fi  = 0*(Pi/180);           //Ângulo de retorno da pá da savonius
-// ea = 0.005;                 //Espessura da Alma da Malha
 
 Point( 1) = ( 0.100000,       0.000378,       0.000000 );
 Point( 2) = ( 0.090000,       0.002420,       0.000000 );
@@ -99,176 +87,11 @@ Line loop(15) = {1};                //Pá da Darreius
 Line Loop(24) = {6, 7};             //Zona de Rotação 2
 Line Loop(25) = {16, 17, 18, 19};   //Quadrado do domínio
 
-// //-------------Savonius-------------//
-
-// //Pás da Savonius - Point(3XX) Elementos(4XX)
-
-// //Pás parte interna
-// Point(300) = {0         , c_s / 2 - s   , 0, 1.0};
-// Point(301) = {0         , c_s     - s   , 0, 1.0};
-// Point(302) = {0         , 0       - s   , 0, 1.0};
-// //Point(112) = {c_s / 2   , c_s / 2 - s   , 0, 1.0};
-
-// Point(310) = {0         , -c_s / 2 + s  , 0, 1.0};
-// Point(311) = {0         , -c_s     + s  , 0, 1.0};
-// Point(312) = {0         , 0        + s  , 0, 1.0};
-// //Point(116) = {-c_s / 2  , -c_s / 2 + s  , 0, 1.0};
-
-// Circle(400) = {301, 300, 302};
-// //Circle(21) = {112, 109, 110};
-
-// Circle(401) = {311, 310, 312};
-// //Circle(23) = {116, 113, 114};
-
-// //Pás parte externa
-// Point(303) = {0             , c_s     - s + esp , 0, 1.0};
-// Point(304) = {0             , 0       - s - esp , 0, 1.0};
-// //Point(119) = {c_s / 2 + esp , c_s / 2 - s       , 0, 1.0};
-
-// Point(313) = {0             , -c_s     + s - esp, 0, 1.0};
-// Point(314) = {0             , 0        + s + esp, 0, 1.0};
-// // Point(122) = {-c_s / 2 - esp, -c_s / 2 + s      , 0, 1.0};
-
-// Circle(402) = {303, 300, 304};
-// // Circle(25) = {119, 109, 117};
-
-// Circle(403) = {313, 310, 314};
-// // Circle(27) = {122, 113, 120};
-
-// //Pontas da Savonius
-// Point(315) = {0             , c_s     - s + esp/2, 0, 1.0};
-// Point(316) = {0             , 0       - s - esp/2, 0, 1.0};
-// Point(317) = {0             , -c_s    + s - esp/2, 0, 1.0};
-// Point(318) = {0             , 0       + s + esp/2, 0, 1.0};
-
-// Circle(404) = {301, 315, 303};
-// Circle(405) = {304, 316, 302};
-// Circle(406) = {311, 317, 313};
-// Circle(407) = {314, 318, 312};
-
-// //Alma da Savonius - Point(2XX) Elementos(5XX)//
-
-// //Pontos das Pás parte interna 
-// Point(201) = {0             , c_s     - s - ea  , 0, 1.0};
-// Point(202) = {0             , 0       - s + ea  , 0, 1.0};
-// //Point(203) = {c_s / 2 - ea  , c_s / 2 - s       , 0, 1.0};
-
-// Point(204) = {0             , -c_s     + s + ea , 0, 1.0};
-// Point(205) = {0             , 0        + s - ea , 0, 1.0};
-// // Point(206) = {-c_s / 2 + ea , -c_s / 2 + s      , 0, 1.0};
-
-// // //Curvas Internas da Alma
-// Circle(500) = {201, 300, 202};
-// // Circle(501) = {203, 109, 201};
-
-// Circle(502) = {204, 310, 205};
-// // Circle(503) = {206, 113, 204};
-
-// //Pontos da pá externa
-// Point(207) = {0                 , c_s     - s + esp + ea, 0, 1.0};
-// Point(208) = {0                 , 0       - s - esp - ea, 0, 1.0};
-// //Point(209) = {c_s / 2 + esp + ea, c_s / 2 - s           , 0, 1.0};
-
-// Point(210) = {0                  , -c_s     + s - esp - ea, 0, 1.0};
-// Point(211) = {0                  , 0        + s + esp + ea, 0, 1.0};
-// //Point(212) = {-c_s / 2 - esp - ea, -c_s / 2 + s           , 0, 1.0};
-
-// Circle(504) = {207, 300, 208};
-// // Circle(505) = {209, 109, 207};
-
-// Circle(506) = {210, 310, 211};
-// // Circle(507) = {212, 113, 210};
-
-// //Pontas da alma
-// Circle(508) = {208, 316, 202};
-// Circle(509) = {201, 315, 207};
-
-// Circle(510) = {211, 318, 205};
-// Circle(511) = {204, 317, 210};
-
-// Line(512) = {304, 208};
-// //Line(513) = {302, 202};
-// Line(513) = {202, 302};
-// Line(514) = {301, 201};
-// //Line(515) = {303, 207};
-// Line(515) = {207, 303};
-
-// Line(516) = {312, 205};
-// //Line(517) = {314, 211};
-// Line(517) = {211, 314};
-// //Line(518) = {311, 204};
-// Line(518) = {204, 311};
-// Line(519) = {313, 210};
-
-// // //-----Rotacionando a Savonius-----//
-// // Line Loop(26) = {20, 21, 31, -25, -24, 29};
-// // Line Loop(27) = {22, 23, 32, -27, -26, 34};
-
-// // Line Loop(28) = {502, 503, 511, -507, -506, 510};
-// // Line Loop(29) = {500, 501, 509, -505, -504, 508};
-
-// Rotate {{0, 0, 1}, {0, 0, 0}, gama} {
-//     Curve{400, 402, 404, 405};
-//     Curve{401, 403, 407, 406}; 
-//     Curve{511, 502, 506, 510};
-//     Curve{508, 500, 504, 509};
-//     Point{315, 300, 318, 317, 310, 316};
-//     Line{512, 513, 514, 515, 516, 517, 518, 519};
-// }
-// //---------------------------------//
-
-// //-----Definindo Superfícies-----//
-// //Alma1 - Externa
-// Curve Loop(30) = {504, -512, -402, 515};
-// Plane Surface(1) = {30};
-// //Alma2 - Externa
-// Curve Loop(31) = {403, 517, -506, -519};
-// Plane Surface(2) = {31};
-// //Alma3 - Interna
-// Curve Loop(32) = {400, 513, -500, -514};
-// Plane Surface(3) = {32};
-// //Alma4 - Interna
-// Curve Loop(33) = {401, 516, -502, -518};
-// Plane Surface(4) = {33};
-// //Alma5 - Ponta
-// Curve Loop(34) = {509, -515, -404, 514};
-// Plane Surface(5) = {34};
-// //Alma6 - Ponta
-// Curve Loop(35) = {508, -513, -405, 512};
-// Plane Surface(6) = {35};
-// //Alma7 - Ponta
-// Curve Loop(36) = {510, -516, -407, 517};
-// Plane Surface(7) = {36};
-// //Alma8 - Ponta
-// Curve Loop(37) = {511, -519, -406, 518};
-// Plane Surface(8) = {37};
-
-// //Savonius
-// Curve Loop(38) = {400, -405, -402, -404};
-// Curve Loop(39) = {406, 403, 407, -401};
-// Curve Loop(40) = {500, -508, -504, -509};
-// Curve Loop(41) = {502, -510, -506, -511};
-
 Plane Surface(9) = {15, 12, 13, 14};                //Pás
 Plane Surface(10) = {24, 25};                       //Domínio
-//Plane Surface(11) = {41, 40};                     //Alma da Savonius
 //-------------------------------//
 
 //-----Refinamento-----//
-// //Savonius
-// Transfinite Line {517, 515, 513, 518} = 30 Using Progression 0.9; //Ponta da Pá - Linhas da Alma
-// Transfinite Line {514, 512, 516, 519} = 30 Using Progression 1.1; //Ponta da Pá - Linhas da Alma
-// Transfinite Line {407, 405, 404, 406} = 5 Using Progression 1; //Pontas
-// Transfinite Line {509, 508, 510, 511} = 45 Using Progression 1; //Pontas da Alma
-// Transfinite Line {500, 504, 502, 506} = 400 Using Progression 1; //Alma
-// Transfinite Line {400, 402, 401, 403} = 400 Using Progression 1; //Pás
-
-// Transfinite Surface {1} Right; //Surface da Alma Externa
-// Transfinite Surface {2} Right; //Surface da Alma Externa
-// Transfinite Surface {3}; //Surface da Alma Interna
-// Transfinite Surface {4}; //Surface da Alma Interna
-// Recombine Surface {1, 2, 3, 4};
-
 Transfinite Line {1, 2, 3} = 150 Using Progression 1; //Darreius
 Transfinite Line {8, 9, 10, 11} = 200 Using Progression 1; //Circulo externo
 Transfinite Line {4, 5, 6, 7} = 200 Using Progression 1; //Circulo de Rotação
@@ -280,7 +103,6 @@ Transfinite Line {16, 18} = 300 Using Progression 1; //symmetry
 Physical Line("CircRot") = {4, 5};
 Physical Line("CircExt") = {6, 7};
 Physical Line("PasDarreius") = {1, 2, 3};
-// Physical Line("PasSavonius") = {400, 402, 401, 403, 407, 405, 404, 406};
 Physical Line("symmetry") = {16, 18};
 Physical Line("Inlet") = {19};
 Physical Line("Outlet") = {17};
