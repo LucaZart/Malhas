@@ -1,8 +1,18 @@
 // Gmsh project created on Sun Oct 29 20:50:04 2023
 SetFactory("OpenCASCADE");
 
+//Parâmetros de Refinamento
+Esize = 0.1;                
+Esize2 = Esize/10;
+
+Mesh.CharacteristicLengthFactor = Esize;
+Mesh.Algorithm = 8; //1: MeshAdapt, 2: Automatic, 5: Delaunay, 6: Frontal-Delaunay, 7: BAMG, 8: Frontal-Delaunay for Quads, 9: Packing of Parallelograms  
+Mesh.RecombinationAlgorithm = 0;//0: simple, 1: blossom, 2: simple full-quad, 3: blossom full-quad  
+Mesh.RecombineAll = 1; //0=off, 1=on
+
 //Parâmetros de Projeto
 AR = 0.1;                   //Corresponde a razão de aspecto da Darreius (H/Dd)
+
 r_d = 0.4;                  //Raio da Turbina Darreius (m)
 c_d = 0.2;                  //Corda da Pá da Darreius (m)
 n_d = 3;                    //Número de Pás
@@ -91,12 +101,22 @@ Plane Surface(9) = {15, 12, 13, 14};                //Pás
 Plane Surface(10) = {24, 25};                       //Domínio
 //-------------------------------//
 
+
 //-----Refinamento-----//
 Transfinite Line {1, 2, 3} = 150 Using Progression 1; //Darreius
 Transfinite Line {8, 9, 10, 11} = 200 Using Progression 1; //Circulo externo
 Transfinite Line {4, 5, 6, 7} = 200 Using Progression 1; //Circulo de Rotação
 Transfinite Line {19, 17} = 200 Using Progression 1; //inlet e outlet
 Transfinite Line {16, 18} = 300 Using Progression 1; //symmetry
+
+Field[1] = BoundaryLayer;  
+Field[1].EdgesList = {1, 2, 3};  
+Field[1].hfar = Esize2;             //(float) Element size far from the wall  
+Field[1].hwall_n = Esize2/10;      //(float) Mesh size normal to the wall  
+Field[1].thickness = Esize2;        //(float) maximal thickness of the boundary layer  
+Field[1].ratio = 1.1;               //(float)  
+Field[1].Quads = 0;                 //(int) Generate recombined elements in the boundary layer  
+BoundaryLayer Field = 1;
 //---------------------//
 
 //-----Physical Grups-----//

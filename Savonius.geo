@@ -41,9 +41,6 @@ Line(18) = {108, 106};
 Line(19) = {106, 105}; 
 
 Line Loop(12) = {4, 5};             //Zona de Rotação
-// Line Loop(13) = {2};                //Pá da Darreius         
-// Line Loop(14) = {3};                //Pá da Darreius
-// Line loop(15) = {1};                //Pá da Darreius
 Line Loop(24) = {6, 7};             //Zona de Rotação 2
 Line Loop(25) = {16, 17, 18, 19};   //Quadrado do domínio
 
