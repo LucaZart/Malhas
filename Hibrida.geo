@@ -13,7 +13,7 @@ Mesh.RecombineAll = 1; //0=off, 1=on
 //Parâmetros de Projeto
 AR = 0.1;                   //Corresponde a razão de aspecto da Darreius (H/Dd)
 OR = 0.1;                   //Corresponde a sobreposição das pás da turbina savonius (s/c_s)
-RR  = 0.4;                  //Razão entre os raios da Savonius e da darreius (r_d/c_s)
+RR  = 0.25;                  //Razão entre os raios da Savonius e da darreius (r_d/c_s)
 gama = 00*(Pi/180);         //"Fase" entre os rotores
 
 //Darreius 
